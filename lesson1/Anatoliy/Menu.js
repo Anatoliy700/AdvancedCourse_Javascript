@@ -1,11 +1,24 @@
+/**
+ * Описывает объект {HTMLElement} меню.
+ */
 class Menu {
   //Конструктор - метод, который вызывается до создания объекта
+  /**
+   * Конструктор объекта.
+   * @param {int} id значение атрибута ID.
+   * @param {string} className значение атрибута class.
+   * @param {HTMLElement[]}items массив эелементов(пунктов) меню.
+   */
   constructor(id, className, items) {
     this.id = id;
     this.className = className;
     this.items = items;
   }
 
+  /**
+   * Создает HTML структуру меню и возвращает ее.
+   * @return {string} HTML структура меню.
+   */
   render() {
     let result = `<ul class="${this.className}" id="${this.id}">`;
 
@@ -24,6 +37,9 @@ class Menu {
     return result;
   }
 
+  /**
+   * Удаляет текущий объект меню(в котором вызван) со траницы.
+   */
   remove() {
     let menuElem = document.getElementById(this.id);
     menuElem.parentElement.removeChild(menuElem);
