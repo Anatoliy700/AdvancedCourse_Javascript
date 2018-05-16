@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+    <script src="Menu.js"></script>
+    <script src="MenuItem.js"></script>
+    <script src="Submenu.js"></script>
+    <script>
+        let menu = new Menu('my', 'my', [
+            new MenuItem('/', 'Главная'),
+            new MenuItem('/about', 'О нас'),
+            new MenuItem('/blog', 'Блог'),
+            new MenuItem('/service', 'Услуги'),
+            new MenuItem('/contacts', 'Контакты'),
+            new Menu('34', 243, 324)
+        ]);
+
+
+        window.onload = function () {
+            let menu1 = document.getElementById('menu1');
+            menu1.innerHTML = menu.render(); //Возвращает html код самого меню
+        }
+    </script>
+</head>
+<body>
+<div id="menu1"></div>
+</body>
+</html>
