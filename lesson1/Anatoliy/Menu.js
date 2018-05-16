@@ -1,5 +1,5 @@
 /**
- * Описывает объект {HTMLElement} меню.
+ * Описывает объект создающий {HTMLElement} меню.
  */
 class Menu {
   //Конструктор - метод, который вызывается до создания объекта
@@ -7,7 +7,7 @@ class Menu {
    * Конструктор объекта.
    * @param {int} id значение атрибута ID.
    * @param {string} className значение атрибута class.
-   * @param {HTMLElement[]}items массив эелементов(пунктов) меню.
+   * @param {Object[]}items массив объектов эелементов(пунктов) меню.
    */
   constructor(id, className, items) {
     this.id = id;

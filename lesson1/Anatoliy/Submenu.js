@@ -1,5 +1,5 @@
 /**
- * Описывает объект {HTMLElement} подменю.
+ * Описывает объект создающий {HTMLElement} подменю.
  * Наследует класс меню.
  */
 class Submenu extends Menu {
@@ -8,7 +8,7 @@ class Submenu extends Menu {
    * Переопределенный конструктор объекта.
    * @param {int} id значение атрибута ID.
    * @param {string} className значение атрибута class.
-   * @param {HTMLElement[]}items массив эелементов(пунктов) меню.
+   * @param {Object[]}items массив объектов эелементов(пунктов) меню.
    * @param {string} title значение innerText родительского элемента <li>.
    */
   constructor(id, className, items, title) {
