@@ -3,15 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <title>Task_3</title>
+  <link rel="stylesheet" href="style.css">
   <script src="Hamburger.js"></script>
   <script src="HamburgerException.js"></script>
   <script>
 
-    let hamb = new Hamburger(Hamburger.SIZE_LARGE, Hamburger.STUFFING_SALAD, Hamburger.STUFFING_CHEESE);
+
+    let hamb = new Hamburger(Hamburger.SIZE_LARGE);
   </script>
 </head>
 <body>
 
+<div id="container">
+  <div class="info">
+    <div class="info_size">
+      <span>Размер вашего гамбургера: </span><span id="size"></span>
+    </div>
+    <div class="info_stuffing">
+      <span>Начинка вашего гамбургера: </span><span id="stuffing"></span>
+    </div>
+    <div class="info_topping">
+      <span>Добавки в вашем гамбургере: </span><span id="topping"></span>
+    </div>
+    <div class="info_price">
+      <span>Стоимость: </span><span id="price"></span>
+    </div>
+    <div class="info_calories">
+      <span>Калории: </span><span id="calories"></span>
+    </div>
+  </div>
+  <div class="form">
+    <div class="form_size">
+      <div class="form_title">
+        Выберите размер
+      </div>
+      <label><input name="size" type="radio" id="size_small">Маленький</label>
+      <label><input name="size" type="radio" id="size_large">Большой</label>
+    </div>
+    <div class="form_stuffing">
+      <div class="form_title">
+        Выберите начинку
+      </div>
+      <label><input type="checkbox" id="stuffing_cheese">Сыр</label>
+      <label><input type="checkbox" id="stuffing_salad">Салат</label>
+      <label><input type="checkbox" id="stuffing_potato">Картофель</label>
+    </div>
+    <div class="form_topping">
+      <div class="form_title">
+        Выберите добавку
+      </div>
+      <label><input type="checkbox" id="topping_mayo">Приправа</label>
+      <label><input type="checkbox" id="topping_spice">Майонез</label>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
