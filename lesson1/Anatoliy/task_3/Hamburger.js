@@ -34,6 +34,7 @@ class Hamburger {
         }
       );
       //Если в stuffing передано несколько констант, то добавляем их поочереди с проверкой на дубли.
+      new HamburgerException().removeHtmlElem();
     } catch (e) {
       e.errorOutput();
     }
@@ -57,7 +58,8 @@ class Hamburger {
             } else this.topping.push(el);
           } else throw new HamburgerException(`Добавлена не корректная добавка: ${el.name}`);
         }
-      )
+      );
+      new HamburgerException().removeHtmlElem();
     } catch (e) {
       e.errorOutput();
     }
@@ -84,7 +86,8 @@ class Hamburger {
             // } else this.topping.splice(topping.indexOf(el), 1);
           } else throw new HamburgerException(`Попытка удалить не корректную добавку: ${el.name}`);
         }
-      )
+      );
+      new HamburgerException().removeHtmlElem();
     } catch (e) {
       e.errorOutput();
     }
@@ -97,7 +100,7 @@ class Hamburger {
    *                 Hamburger.TOPPING_*
    */
   //TODO: дописать JSDoc
-  getToppings(obj) {
+  getToppings(obj = undefined) {
     if (obj === 'object') return this.topping;
     else return this.getToppings('object').reduce(
       function (outString, itemObj, ind, arr) {
@@ -110,7 +113,7 @@ class Hamburger {
    * Узнать размер гамбургера
    */
   //TODO: дописать JSDoc
-  getSize(obj) {
+  getSize(obj = undefined) {
     if (obj === 'object') return this.size;
     else return this.size.name;
   };
@@ -119,7 +122,7 @@ class Hamburger {
    * Узнать начинку гамбургера
    */
   //TODO: дописать JSDoc
-  getStuffing(obj) {
+  getStuffing(obj = undefined) {
     if (obj === 'object') return this.stuffing;
     else return this.getStuffing('object').reduce(
       function (outString, itemObj, ind, arr) {
@@ -153,10 +156,10 @@ class Hamburger {
 }
 
 /* Размеры, виды начинок и добавок */
-Hamburger.SIZE_SMALL = {name: 'Маленький',constName: 'SIZE_SMALL',  price: 50, calories: 20};
-Hamburger.SIZE_LARGE = {name: 'Большой',constName: 'SIZE_LARGE', price: 100, calories: 40};
-Hamburger.STUFFING_CHEESE = {name: 'Сыр',constName: 'STUFFING_CHEESE', price: 10, calories: 20};
-Hamburger.STUFFING_SALAD = {name: 'Салат',constName: 'STUFFING_SALAD', price: 20, calories: 5};
-Hamburger.STUFFING_POTATO = {name: 'Кортофель',constName: 'STUFFING_POTATO', price: 15, calories: 10};
-Hamburger.TOPPING_MAYO = {name: 'Приправа',constName: 'TOPPING_MAYO', price: 15, calories: 0};
-Hamburger.TOPPING_SPICE = {name: 'Майонез',constName: 'TOPPING_SPICE', price: 20, calories: 5};
+Hamburger.SIZE_SMALL = {name: 'Маленький', constName: 'SIZE_SMALL', price: 50, calories: 20};
+Hamburger.SIZE_LARGE = {name: 'Большой', constName: 'SIZE_LARGE', price: 100, calories: 40};
+Hamburger.STUFFING_CHEESE = {name: 'Сыр', constName: 'STUFFING_CHEESE', price: 10, calories: 20};
+Hamburger.STUFFING_SALAD = {name: 'Салат', constName: 'STUFFING_SALAD', price: 20, calories: 5};
+Hamburger.STUFFING_POTATO = {name: 'Кортофель', constName: 'STUFFING_POTATO', price: 15, calories: 10};
+Hamburger.TOPPING_MAYO = {name: 'Приправа', constName: 'TOPPING_MAYO', price: 15, calories: 0};
+Hamburger.TOPPING_SPICE = {name: 'Майонез', constName: 'TOPPING_SPICE', price: 20, calories: 5};

@@ -6,9 +6,10 @@
   <link rel="stylesheet" href="style.css">
   <script src="Hamburger.js"></script>
   <script src="HamburgerException.js"></script>
+  <script src="contriller.js"></script>
   <script>
 
-
+    window.onload = () => controller.init();
     let hamb = new Hamburger(Hamburger.SIZE_LARGE);
   </script>
 </head>
@@ -32,28 +33,35 @@
       <span>Калории: </span><span id="calories"></span>
     </div>
   </div>
-  <div class="form">
+  <div id="form">
     <div class="form_size">
       <div class="form_title">
         Выберите размер
       </div>
-      <label><input name="size" type="radio" id="size_small">Маленький</label>
-      <label><input name="size" type="radio" id="size_large">Большой</label>
+      <label><input name="size" data-name="SIZE_SMALL" type="radio" id="size_small">Маленький</label>
+      <label><input name="size" data-name="SIZE_LARGE" type="radio" id="size_large">Большой</label>
     </div>
     <div class="form_stuffing">
       <div class="form_title">
         Выберите начинку
       </div>
-      <label><input type="checkbox" id="stuffing_cheese">Сыр</label>
-      <label><input type="checkbox" id="stuffing_salad">Салат</label>
-      <label><input type="checkbox" id="stuffing_potato">Картофель</label>
+      <label><input name="stuffing" data-name="STUFFING_CHEESE" type="checkbox" id="stuffing_cheese">Сыр</label>
+      <label><input name="stuffing" data-name="STUFFING_SALAD" type="checkbox" id="stuffing_salad">Салат</label>
+      <label><input name="stuffing" data-name="STUFFING_POTATO" type="checkbox" id="stuffing_potato">Картофель</label>
     </div>
-    <div class="form_topping">
+    <button id="order">Заказать</button>
+    <div id="topping_wrap" class="form_topping">
       <div class="form_title">
         Выберите добавку
       </div>
-      <label><input type="checkbox" id="topping_mayo">Приправа</label>
-      <label><input type="checkbox" id="topping_spice">Майонез</label>
+      <div class="topping_name">Приправа
+        <button data-name="TOPPING_MAYO" data-active="add" id="topping_mayo_add">Добавить</button>
+        <button data-name="TOPPING_MAYO" data-active="remove" id="topping_mayo_del">Удалить</button>
+      </div>
+      <div class="topping_name">Майонез
+        <button data-name="TOPPING_SPICE" data-active="add" id="topping_spice_add">Добавить</button>
+        <button data-name="TOPPING_SPICE" data-active="remove" id="topping_spice_del">Удалить</button>
+      </div>
     </div>
   </div>
 </div>

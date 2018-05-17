@@ -9,10 +9,24 @@ class HamburgerException extends Error {
   //TODO: доделать JSDoc
   constructor(message) {
     super(message);
-    // this.message = message;
-    // this.name = 'Error';
-    this.errorOutput = function () {
-      console.error(this.message);
+  }
+
+  errorOutput() {
+    console.error(this.message);
+
+    let elem = document.getElementById('errorMessage');
+    if (!elem) {
+      elem = document.createElement('div');
+      elem.id = 'errorMessage';
+      document.getElementById('container').appendChild(elem);
+    }
+    elem.innerHTML = this.message;
+  }
+
+  removeHtmlElem(){
+    let elem = document.getElementById('errorMessage');
+    if (elem) {
+      elem.parentElement.removeChild(elem);
     }
   }
 }
