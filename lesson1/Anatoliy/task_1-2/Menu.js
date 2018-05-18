@@ -35,6 +35,8 @@ class Menu {
       }
     }
 
+    // result += `<li><a href="#" onclick="${(function(ttt){return ttt.remove()})(this)}">Удалить</a></li>`;
+    result += `<li><a data-name="del" data-id="${this.id}" href="#">Удалить</a></li>`;
     result += '</ul>';
     return result;
   }
@@ -42,9 +44,17 @@ class Menu {
   /**
    * Удаляет текущий объект меню(в котором вызван) со траницы.
    */
-  remove() {
-    let menuElem = document.getElementById(this.id);
-    menuElem.parentElement.removeChild(menuElem);
+  remove(e) {
+    if (e) {
+      const elem = e.target;
+      if (elem.dataset.name === "del") {
+        let menuElem = document.getElementById(elem.dataset.id);
+        menuElem.parentElement.removeChild(menuElem);
+      }
+    } else {
+      let menuElem = document.getElementById(this.id);
+      menuElem.parentElement.removeChild(menuElem);
+    }
   }
 }
 
