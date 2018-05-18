@@ -3,11 +3,34 @@ body{
   padding: 0;
 }
 
-#container{
-  /*background-color: #44a2ff;*/
-}
-
 label{
   display: block;
 }
+
+#errorMessage{
+  display: inline-block;
+  margin: 10px ;
+  padding: 10px;
+  color: red;
+  border: red 1px solid;
+}
+
+.info,
+.form_size,
+.form_stuffing,
+.form_topping{
+  margin: 10px;
+}
+
+.info span{
+  color: blue;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.topping_name{
+  margin: 5px 0;
+}
+
+
 

@@ -90,6 +90,4 @@ const controller = {
   render(elem, data) {
     if (data !== undefined) elem.innerHTML = data;
   },
-
-
 };
