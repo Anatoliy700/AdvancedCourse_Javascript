@@ -42,7 +42,7 @@
     window.onload = function () {
       let menu1 = document.getElementById('menu1');
       menu1.innerHTML = menu_2.render(); //Возвращает html код самого меню
-      menu1.addEventListener('click', ()=>menu_2.remove(event));
+      menu1.addEventListener('click', event => menu_2.remove(event));
     }
   </script>
 </head>
