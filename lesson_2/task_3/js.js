@@ -1,7 +1,7 @@
 "use strict";
 
 
-const imgs = {
+const photoGallery = {
 
   init() {
     const request = new XMLHttpRequest();
