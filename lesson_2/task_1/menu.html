@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Menu</title>
+  <script src="Menu.js"></script>
+  <script src="MenuItem.js"></script>
+  <script src="Submenu.js"></script>
+  <script>
+
+    let menu_2 = new Menu('my', 'my', [
+      new MenuItem('/', 'Главная'),
+      new MenuItem('/about', 'О нас'),
+      new MenuItem('/blog', 'Блог'),
+      new MenuItem('/service', 'Услуги'),
+      new MenuItem('/contacts', 'Контакты'),
+      new Submenu('subMenu', 'subMenu', [
+        new MenuItem('#', 'Test'),
+        new MenuItem('#', 'Test2'),
+        new MenuItem('#', 'Test3'),
+        new MenuItem('#', 'Test4'),
+        new Submenu('subMenu_2', 'subMenu_2', [
+          new MenuItem('#', 'Тест1.1'),
+          new MenuItem('#', 'Тест1.2'),
+          new MenuItem('#', 'Тест1.3'),
+          new MenuItem('#', 'Тест1.4'),
+          new MenuItem('#', 'Тест1.5'),
+        ], 'Submenu_2')
+      ], 'Submenu')
+    ]);
+
+
+    window.onload = function () {
+      let menu1 = document.getElementById('menu1');
+      menu1.innerHTML = menu_2.render(); //Возвращает html код самого меню
+      menu1.addEventListener('click', event => menu_2.remove(event));
+    }
+  </script>
+</head>
+<body>
+<div id="menu1"></div>
+</body>
+</html>
