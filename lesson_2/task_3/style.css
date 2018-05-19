@@ -1,11 +1,11 @@
 
-#gallery_wrap{
+#gallery_wrap {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
 }
 
-#gallery_wrap>img{
+#gallery_wrap > img {
   margin: 10px;
 }
 
