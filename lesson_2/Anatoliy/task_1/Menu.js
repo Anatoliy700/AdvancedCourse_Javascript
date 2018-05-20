@@ -7,14 +7,17 @@ class Menu {
   //Конструктор - метод, который вызывается до создания объекта
   /**
    * Конструктор объекта.
-   * @param {int} id значение атрибута ID.
+   * @param {string} id значение атрибута ID.
    * @param {string} className значение атрибута class.
    * @param {Object[]}items массив объектов эелементов(пунктов) меню.
+   * @param {boolean} delItem если передано true то будет выведен последним элементом, элемент удаления текущего меню,
+   * иначе элемент для удаления не будет добавлен.
    */
-  constructor(id, className, items) {
+  constructor(id, className, items, delItem = false) {
     this.id = id;
     this.className = className;
     this.items = items;
+    this.delItem = delItem;
   }
 
   /**
@@ -33,7 +36,10 @@ class Menu {
       }
     }
 
-    result += `<li><a data-name="del" data-id="${this.id}" href="#">Удалить меню</a></li>`;
+    if (this.delItem) {
+      result += `<li><a data-name="del" data-id="${this.id}" href="#" style="color: red;">Удалить меню</a></li>`;
+    }
+
     result += '</ul>';
     return result;
   }

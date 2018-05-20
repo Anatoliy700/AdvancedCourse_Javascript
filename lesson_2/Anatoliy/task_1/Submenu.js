@@ -8,13 +8,15 @@ class Submenu extends Menu {
 
   /**
    * Переопределенный конструктор объекта.
-   * @param {int} id значение атрибута ID.
+   * @param {string} id значение атрибута ID.
    * @param {string} className значение атрибута class.
    * @param {Object[]}items массив объектов эелементов(пунктов) меню.
    * @param {string} title значение innerText родительского элемента <li>.
+   * @param delItem если передано true то будет выведен последним элементом, элемент удаления текущего меню,
+   * иначе элемент для удаления не будет добавлен.
    */
-  constructor(id, className, items, title) {
-    super(id, className, items);
+  constructor(id, className, items, title, delItem = false) {
+    super(id, className, items, delItem);
     this.title = title;
   }
 
