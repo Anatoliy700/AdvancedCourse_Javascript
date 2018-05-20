@@ -7,15 +7,6 @@
   <script src="MenuItem.js"></script>
   <script src="Submenu.js"></script>
   <script>
-    let menu = new Menu('my', 'my', [
-      new MenuItem('/', 'Главная'),
-      new MenuItem('/about', 'О нас'),
-      new MenuItem('/blog', 'Блог'),
-      new MenuItem('/service', 'Услуги'),
-      new MenuItem('/contacts', 'Контакты'),
-      new Menu('34', 243, 324)
-    ]);
-
 
     let menu_2 = new Menu('my', 'my', [
       new MenuItem('/', 'Главная'),
@@ -34,9 +25,9 @@
           new MenuItem('#', 'Тест1.3'),
           new MenuItem('#', 'Тест1.4'),
           new MenuItem('#', 'Тест1.5'),
-        ], 'Submenu_2')
+        ], 'Submenu_2', true)
       ], 'Submenu')
-    ]);
+    ], true);
 
 
     window.onload = function () {
