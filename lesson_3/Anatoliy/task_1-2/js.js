@@ -14,6 +14,7 @@ const converterString = {
     this.input.style.height = '64px';
     this.input.value = `'Lorem ipsum'dolor sit 'amet'.`;
     this.button = document.createElement('button');
+    this.button.style.display = 'block';
     this.button.innerText = 'Конвертировать';
     this.out = document.createElement('p');
     this.container.appendChild(this.input);
