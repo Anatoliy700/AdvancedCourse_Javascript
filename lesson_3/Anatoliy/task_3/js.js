@@ -42,7 +42,7 @@ const validateForm = {
     email: 'Не корректный email',
     message: 'Вы забыли написать сообщение',
   },
-  regExpName: /^[\wа-яё]{2,}$/i,
+  regExpName: /^[a-zа-яё]{2,}$/i,
   regExpPhone: /^\+\d\(\d{3}\)\d{3}-\d{4}$/,
   regExpEmail: /^[a-z0-9-_.]+@[a-z]+.[a-z]{2,4}$/i,
   regExpMessage: /[\wа-яё]{3,}/,
