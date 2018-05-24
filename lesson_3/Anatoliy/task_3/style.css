@@ -1,0 +1,29 @@
+#form{
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /*align-items: flex-start;*/
+}
+
+label,
+button{
+  margin-top: 10px;
+}
+
+#send{
+  align-self: flex-start;
+}
+
+.error-message{
+  color:red;
+  font-size: 0.8em;
+}
+
+.error-input{
+  border: red solid 1px;
+}
+
+.success-input{
+  border: green solid 2px;
+}
