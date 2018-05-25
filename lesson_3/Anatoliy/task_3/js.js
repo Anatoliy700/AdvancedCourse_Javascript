@@ -82,16 +82,16 @@ const validateForm = {
   validateInput(elem) {
     switch (elem.id) {
       case this.idInputName:
-        return this.regExpName.test(elem.value);
+        return this.regExpName.test(elem.value.trim());
 
       case this.idInputPhone:
-        return this.regExpPhone.test(elem.value);
+        return this.regExpPhone.test(elem.value.trim());
 
       case this.idInputEmail:
-        return this.regExpEmail.test(elem.value);
+        return this.regExpEmail.test(elem.value.trim());
 
       case this.idInputMessage:
-        return this.regExpMessage.test(elem.value);
+        return this.regExpMessage.test(elem.value.trim());
     }
   },
 
@@ -120,6 +120,7 @@ const validateForm = {
       }
       elem.classList.remove(this.classNoValidateInput);
       elem.classList.add(this.classValidateInput);
+      elem.value = elem.value.trim();
     }
   },
 };
