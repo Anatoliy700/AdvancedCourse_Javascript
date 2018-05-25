@@ -26,9 +26,7 @@ const converterString = {
 
   btnClickHandler() {
     let data = this.input.value;
-    let newData = data.replace(/'/g, '"');
-    newData = newData.replace(/\b"\b/g, `'`);
-    this.out.innerText =newData;
+    this.out.innerText = data.replace(/(?!\b'\b)'/g, '"');
   },
 
 
