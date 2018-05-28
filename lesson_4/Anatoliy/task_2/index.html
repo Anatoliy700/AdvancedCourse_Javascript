@@ -4,17 +4,22 @@
   <meta charset="UTF-8">
   <title>Валидация формы</title>
   <link rel="stylesheet" href="style.css">
+  <script src="jquery-3.3.1.js"></script>
   <script src="js.js"></script>
 </head>
 <body>
 <div class="container">
-  <form action="#" method="post" id="form">
+  <form action="#" method="get" id="form">
     <label for="name">Введите ваше имя</label>
     <input type="text" id="name" name="name">
     <label for="phone">Введите ваш телефон</label>
     <input type="text" id="phone" name="phone" placeholder="+7(000)000-0000">
     <label for="email">Введите ваш email</label>
     <input type="text" name="email" id="email">
+    <label for="city">Выберите город</label>
+    <select name="city" id="city">
+      <option value="-1">Выберите город</option>
+    </select>
     <label for="message">Введите ваше сообщение</label>
     <textarea id="message" name="message" cols="30" rows="5"></textarea>
     <button type="submit" id="send">Отправить</button>

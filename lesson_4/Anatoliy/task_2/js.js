@@ -1,6 +1,37 @@
 "use strict";
 
 /**
+ * Подгружает массив объектов городов с сервера и добавляет их в select.
+ */
+const selectCity = {
+  idSelect: 'city',
+  errorMessage: 'Выберите город',
+
+  /**
+   * Инициализирует запрос на сервер и добавляет полученные данные городов в select.
+   */
+  init() {
+    $.getJSON('city.json', data => {
+      for (let i = 0; i < data.length; i++) {
+        $(`#${this.idSelect}`).append(
+          $(document.createElement('option')).val(data[i].id).text(data[i].name)
+        );
+      }
+    })
+  },
+
+  /**
+   * Проводит валидацию поля select.
+   * @param {HTMLElement} elem элемент select.
+   * @return {boolean} возвращает true если элемент проходит валидацию иначе false.
+   */
+  validateSelect(elem) {
+    return elem.value !== '-1' && elem.value !== '';
+  },
+};
+
+
+/**
  * Валидация формы.
  * @property {string} idForm id HTML элемента формы.
  * @property {string} idInputName id HTML элемента input для ввода имени.
@@ -41,6 +72,7 @@ const validateForm = {
     phone: 'Телефон должен быть в формате "+7(000)000-0000"',
     email: 'Не корректный email',
     message: 'Вы забыли написать сообщение',
+    city: selectCity.errorMessage,
   },
   regExpName: /^[a-zа-яё]{2,}$/i,
   regExpPhone: /^\+\d\(\d{3}\)\d{3}-\d{4}$/,
@@ -92,6 +124,9 @@ const validateForm = {
 
       case this.idInputMessage:
         return this.regExpMessage.test(elem.value.trim());
+
+      case selectCity.idSelect:
+        return selectCity.validateSelect(elem);
     }
   },
 
@@ -125,4 +160,8 @@ const validateForm = {
   },
 };
 
-window.onload = () => validateForm.init();
+
+window.onload = () => {
+  validateForm.init();
+  selectCity.init();
+};
