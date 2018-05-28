@@ -1,7 +1,12 @@
 "use strict";
 
 /**
- * Подгружает массив объектов городов с сервера и добавляет их в select.
+ * Обрабатывает input для ввода города, при вводе названия города предлагает варианты.
+ * @property {string} idInputCity id HTML элемента input.
+ * @property {string} errorMessage содержит сообщение об ошибке валидации для поля "Город".
+ * @property {string} urlJSON путь к файлу .json с объектами городов.
+ * @property {string} idElemListSearchCity id HTML элемента в котором пердлагаются варианты городов.
+ * @property {RegExp} regExpCity регулярное выражение для валидации поля "Город".
  */
 const inputCity = {
   idInputCity: 'city',
@@ -11,13 +16,20 @@ const inputCity = {
   regExpCity: /^[a-zа-яё]{2,}$/i,
 
   /**
-   * Инициализирует запрос на сервер и добавляет полученные данные городов в select.
+   * Вешает события на input для ввода города.
    */
   init() {
     $(`#${this.idInputCity}`).on('keyup click', event => this.keyPressHandler(event));
     // .on(' focusout', () => this.outOptionCities(null, true));
   },
 
+  /**
+   * Обработчик события нажатия на кнопки клавиатуры при вводе названия города.
+   * Если символов введено меньше 3 то удаляем окно с предлогаемым списком городов, если он есть.
+   * Если символов введено 3 и больше, отправляет запрос на получения массива с объектами городов,
+   * инициализирует регулярное выражение и вызывает функцию для парсинка массива с городами.
+   * @param {Event} event событие произошедшее в поле ввода названия города.
+   */
   keyPressHandler(event) {
     const input = event.target;
     const dataUser = input.value;
@@ -31,9 +43,11 @@ const inputCity = {
   },
 
   /**
-   *
-   * @param data
-   * @param regExp
+   * Парсит массив с объектами городов проверяя каждое название города на соотвествие регулярному выражению
+   * и из тех которые прозодят проверку пр регулярке складывает в отдельный массив.
+   * Запускает метод вывода этих городов пользователю.
+   * @param {Object[]} data массив объектов городов для проверки регулярным выражением.
+   * @param {Object} regExp регулярное выражение.
    */
   parsJSON(data, regExp) {
     let arrSearchObjectCity = [];
@@ -54,10 +68,11 @@ const inputCity = {
     }
   },
 
+
   /**
-   *
-   * @param arrObjCities
-   * @param remove
+   * Выводит предлагаемый список городов пользователю или скрывает этот список.
+   * @param {Object[]} arrObjCities массив объектов городов для вывода пользователю.
+   * @param {boolean} remove если true то удаляем список городо, false выводим.
    */
   outOptionCities(arrObjCities, remove = false) {
     if (remove) {
@@ -83,8 +98,8 @@ const inputCity = {
   },
 
   /**
-   * Проводит валидацию поля select.
-   * @param {HTMLElement} elem элемент select.
+   * Проводит валидацию поля input.
+   * @param {HTMLElement} elem элемент input.
    * @return {boolean} возвращает true если элемент проходит валидацию иначе false.
    */
   validateSelect(elem) {
