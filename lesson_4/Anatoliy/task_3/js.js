@@ -14,6 +14,7 @@ const inputCity = {
   urlJSON: 'city.json',
   idElemListSearchCity: 'search-city',
   regExpCity: /^[a-zа-яё]{2,}$/i,
+  dataCity: [],//
 
   /**
    * Вешает события на input для ввода города.
@@ -21,6 +22,8 @@ const inputCity = {
   init() {
     $(`#${this.idInputCity}`).on('keyup click', event => this.keyPressHandler(event));
     // .on(' focusout', () => this.outOptionCities(null, true));
+
+    $.getJSON(this.urlJSON, (data) => this.dataCity = data);//
   },
 
   /**
@@ -38,7 +41,9 @@ const inputCity = {
     } else {
       const regExp = new RegExp(`^${dataUser}[\wа-яё ]{0,}`, 'i');
 
-      $.getJSON(this.urlJSON, (data) => this.parsJSON(data, regExp));
+      this.parsJSON(this.dataCity, regExp);//
+
+      // $.getJSON(this.urlJSON, (data) => this.parsJSON(data, regExp));
     }
   },
 
