@@ -74,11 +74,10 @@ class Basket {
         this.amount -= this.basketItems[arrInd].price;
         this.basketItems.splice(arrInd, 1);
         this.countGoods--;
+        this.refresh();
         break;
       }
     }
-    //splice
-    this.refresh();
   }
 
   refresh() {
