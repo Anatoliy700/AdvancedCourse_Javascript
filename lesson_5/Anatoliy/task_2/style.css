@@ -1,0 +1,33 @@
+*{
+  box-sizing: border-box;
+}
+
+div#container{
+  width: 500px;
+}
+
+form#addCommentForm{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+form#addCommentForm label,
+form#addCommentForm button{
+  margin-top: 20px;
+}
+
+form#addCommentForm textarea{
+  width: 100%;
+  box-sizing: border-box;
+;
+}
+
+.comment-item{
+  background-color: #ff8216;
+
+}
+
+.comment-item.approved{
+  background-color: #22ba40;
+}

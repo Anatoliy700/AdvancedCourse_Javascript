@@ -3,12 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Корзина</title>
+  <link rel="stylesheet" href="style.css">
   <script src="js/jquery-3.3.1.js"></script>
   <script src="js/Comment.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/commentBlock.js"></script>
+  <script>
+    window.onload = () => commentBlock.init();
+  </script>
 </head>
 <body>
-<div id="comment_wrapper"></div>
+<h1>Комментарии</h1>
 <hr>
+<div id="container">
+  <div id="comment_wrapper"></div>
+  <hr>
+  <form id="addCommentForm" action="#">
+    <label for="nameUser">Ваше имя</label>
+    <input type="text" id="nameUser">
+    <label for="commentUser">Ваш комментарий</label>
+    <textarea name="" id="commentUser" rows="5"></textarea>
+    <button id="btnAddComment" data-type="add">Отправить</button>
+  </form>
+</div>
 </body>
 </html>
