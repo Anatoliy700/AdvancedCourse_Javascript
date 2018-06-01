@@ -8,15 +8,20 @@ const settings = {
   urlDelComment: 'json/review.delete.json',
   urlApprovalComment: 'json/review.submit.json',
   urlAddComment: 'json/review.add.json',
-
 };
 
-
+/**
+ *
+ * @type {{settings: {idContainer: string, idCommentBlock: string, classCommentApproved: string, urlGetAllComments: string, urlDelComment: string, urlApprovalComment: string, urlAddComment: string}, $elCommentBlock: null, arrAllComments: Array, init(): void, render(): void, btnClickHandler(*): void, approve(*=): void, remove(*=): void, add(*=): void, ajax(*): void}}
+ */
 const commentBlock = {
   settings,
   $elCommentBlock: null,
   arrAllComments: [],
 
+  /**
+   *
+   */
   init() {
     this.$elCommentBlock = $(`#${this.settings.idCommentBlock}`);
     $(`#${this.settings.idContainer}`).on('click', 'button', event => this.btnClickHandler(event));
@@ -35,6 +40,9 @@ const commentBlock = {
     });
   },
 
+  /**
+   *
+   */
   render() {
     if (this.arrAllComments.length > 0) {
       for (const obj of this.arrAllComments) {
@@ -44,6 +52,10 @@ const commentBlock = {
     }
   },
 
+  /**
+   *
+   * @param event
+   */
   btnClickHandler(event) {
     if (event.target.dataset.type === 'del') {
       this.remove(event.target);
@@ -55,6 +67,10 @@ const commentBlock = {
     }
   },
 
+  /**
+   *
+   * @param elem
+   */
   approve(elem) {
     this.ajax({
       url: this.settings.urlApprovalComment,
@@ -69,13 +85,17 @@ const commentBlock = {
             $(elem).remove()
 
           } else if (data.result === 0) {
-            console.log('Что то пошло не так')
+            alert(`Сервер вернул ошибку: ${data.error_message}`);
           }
         }(data, elem, this))
       }
     });
   },
 
+  /**
+   *
+   * @param elem
+   */
   remove(elem) {
     this.ajax({
       url: this.settings.urlDelComment,
@@ -87,13 +107,17 @@ const commentBlock = {
           if (data.result && data.result === 1) {
             $(elem).parent(`.comment-item`).remove();
           } else if (data.result === 0) {
-            console.log('Что то пошло не так')
+            alert(`Сервер вернул ошибку: ${data.error_message}`);
           }
         }(data, elem))
       }
     });
   },
 
+  /**
+   *
+   * @param elem
+   */
   add(elem) {
     let userNameInput = $(elem).siblings(`#nameUser`);
     let userMessageInput = $(elem).siblings(`#commentUser`);
@@ -119,7 +143,7 @@ const commentBlock = {
               userNameInput.val('');
               userMessageInput.val('');
             } else if (data.result === 0) {
-              console.log('Что то пошло не так')
+              alert(`Сервер вернул ошибку: ${data.error_message}`);
             }
           }(data, this.$elCommentBlock, this.arrAllComments))
         }
@@ -127,6 +151,10 @@ const commentBlock = {
     }
   },
 
+  /**
+   *
+   * @param param
+   */
   ajax(param) {
     $.ajax({
       url: param.url,
