@@ -274,6 +274,7 @@ const validateForm = {
         modal: true,
         title: 'Ошибка ввода',
         position: {my: "left top", at: "right+10 top", of: elem},
+        draggable: false,
       });
       //
 
