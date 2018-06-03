@@ -1,5 +1,32 @@
 "use strict";
 
+const birthdayInput = {
+  idInputDatepicker: 'birthday',
+  errorMessage: 'Введите дату рождения в формате "дд/мм/гггг"',
+  regExpCity: /^[0-3][0-9]\/[01][0-9]\/[12][0-9]{3}$/,
+
+  init() {
+    $(`#${this.idInputDatepicker}`).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      firstDay: 1,
+      dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+      dayNames: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+      dateFormat: 'dd/mm/yy',
+      monthNamesShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+    });
+  },
+
+  validate(elem) {
+    return this.regExpCity.test(elem.value.trim());
+  },
+
+  effectErrorInput(elem) {
+    $(elem).effect('bounce');
+  },
+};
+
+
 /**
  * Обрабатывает input для ввода города, при вводе названия города предлагает варианты.
  * @property {string} idInputCity id HTML элемента input.
@@ -138,6 +165,7 @@ const inputCity = {
  * @property {RegExp} regExpMessage регулярное выражение для валидации поля "сообщение".
  */
 const validateForm = {
+  birthdayInput,
   idForm: 'form',
   idInputName: 'name',
   idInputPhone: 'phone',
@@ -155,6 +183,7 @@ const validateForm = {
     email: 'Не корректный email',
     message: 'Вы забыли написать сообщение',
     city: inputCity.errorMessage,
+    birthday: birthdayInput.errorMessage,
   },
   regExpName: /^[a-zа-яё]{2,}$/i,
   regExpPhone: /^\+\d\(\d{3}\)\d{3}-\d{4}$/,
@@ -168,6 +197,9 @@ const validateForm = {
     this.elemForm = document.getElementById(this.idForm);
     this.elemBtnSubmit = document.getElementById(this.idBtnSubmit);
     this.elemForm.addEventListener('submit', event => this.btnClickHandler(event));
+    //
+    this.birthdayInput.init();
+    //
   },
 
   /**
@@ -182,6 +214,7 @@ const validateForm = {
       if (!validateResult) {
         this.outMessageFailValidate(elem);
         event.preventDefault();
+        break;
       } else {
         this.outMessageFailValidate(elem, true);
       }
@@ -209,6 +242,9 @@ const validateForm = {
 
       case inputCity.idInputCity:
         return inputCity.validateSelect(elem);
+
+      case this.birthdayInput.idInputDatepicker:
+        return this.birthdayInput.validate(elem);
     }
   },
 
@@ -224,13 +260,23 @@ const validateForm = {
         elemError = document.createElement('div');
         elemError.id = `error-${elem.id}`;
         elemError.classList.add(this.classElemOutErr);
-        elem.parentElement.insertBefore(elemError, elem.nextElementSibling);
+        // elem.parentElement.insertBefore(elemError, elem.nextElementSibling);
 
         elem.classList.remove(this.classValidateInput);
         elem.classList.add(this.classNoValidateInput);
       }
       elemError.innerText = this.errorMessage[elem.id];
       elem.value = '';
+
+      // добавлено вывод диологового окна и эффект к валидируемому input
+      this.birthdayInput.effectErrorInput(elem);
+      $(elemError).dialog({
+        modal: true,
+        title: 'Ошибка ввода',
+        position: {my: "left top", at: "right+10 top", of: elem},
+      });
+      //
+
     } else {
       if (elemError) {
         elemError.parentElement.removeChild(elemError);
@@ -240,6 +286,8 @@ const validateForm = {
       elem.value = elem.value.trim();
     }
   },
+
+
 };
 
 
