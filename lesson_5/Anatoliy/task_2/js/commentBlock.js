@@ -158,7 +158,7 @@ const commentBlock = {
   ajax(param) {
     $.ajax({
       url: param.url,
-      type: 'POST',
+      type: 'GET',
       dataType: 'json',
       data: param.data,
       success: param.success,
