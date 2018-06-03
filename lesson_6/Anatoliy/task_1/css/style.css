@@ -1,0 +1,61 @@
+#form {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /*align-items: flex-start;*/
+}
+
+label,
+button {
+  margin-top: 10px;
+}
+
+#send {
+  align-self: flex-start;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.8em;
+}
+
+.error-input {
+  border: red solid 1px;
+}
+
+.success-input {
+  border: green solid 2px;
+}
+
+.wrap-city {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+#search-city {
+  list-style-type: none;
+  padding: 2px;
+  margin: 0;
+  position: absolute;
+  top: 48px;
+  background-color: white;
+  border: 1px solid #0f0bc2;
+  color: #0f0bc2;
+  display: block;
+  opacity: 0.98;
+  width: 100%;
+  box-sizing: border-box;
+
+}
+
+#search-city li {
+  cursor: pointer;
+}
+
+#search-city li:hover {
+  background-color: #c6c6c6;
+}
+
