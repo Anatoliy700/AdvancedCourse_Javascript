@@ -15,6 +15,34 @@ $(document).ready(function () {
   let basket = new Basket('basket');
   basket.render($('#basket_wrapper'));
 
+
+  //Добавление товара в карзину перетаскиванием
+  $('.goods > .good').draggable({
+    helper: 'clone',
+    scope: 'good',
+    addClasses: true,
+    start: function (event, ui) {
+      ui.helper.addClass('ui-drag-activate_good');
+    }
+  });
+
+  $('#basket').droppable({
+    activeClass: 'ui-drag-activate_basket',
+    scope: 'good',
+    drop: function (event, ui) {
+      let idProduct = parseInt($(ui.draggable).find('button.buygood').attr('data-id'));
+      let price = parseInt($(ui.draggable).find('span.product-price').text());
+      basket.add(idProduct, price);
+      $(this).addClass('ui-drag-drop_basket', 500,
+        function () {
+          $(this).removeClass("ui-drag-drop_basket", 500);
+        }
+      );
+    },
+  });
+  //
+
+
   //Добавление товара в корзину
   $('button.buygood').on('click', function () {
     let idProduct = parseInt($(this).attr('data-id'));
