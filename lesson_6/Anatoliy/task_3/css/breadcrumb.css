@@ -1,0 +1,221 @@
+@import "main.css";
+
+.nav-active-element {
+    border-bottom: 3px solid #ef5b70;
+    box-sizing: border-box;
+}
+
+.breadcrumb {
+    background-color: #f8f3f4;
+    padding: 0; /*todo:переопределяем bootstrap*/
+    margin-bottom: 0; /*todo:переопределяем bootstrap*/
+    border-radius: 0; /*todo:переопределяем bootstrap*/
+}
+
+.breadcrumb_wrap-content {
+    width: 1141px;
+    height: 148px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.breadcrumb_content-left {
+    color: #f16d7f;
+    font-family: "Arial Black", sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 20px;
+    text-transform: uppercase;
+}
+
+.breadcrumb_content-right {
+    font-family: "Arial", sans-serif;
+    line-height: 20px;
+    color: #636363;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.breadcrumb_content-right a {
+    text-decoration: none;
+    color: #636363;
+}
+
+.breadcrumb_content-right span {
+    color: #f16d7f;
+    font-weight: 700;
+}
+
+main.content {
+    margin: 61px auto;
+}
+
+details {
+    border-bottom: #e8e8e8 solid 1px;
+}
+
+details summary {
+    color: #222222;
+    font-family: "Arial", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    outline: none;
+    height: 69px;
+    line-height: 69px;
+    overflow: hidden;
+}
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+.adress_wrap-form-content {
+    padding: 0 35px 0 35px;
+    /*background-color: cornflowerblue;*/
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 79px;
+}
+
+.form-title {
+    color: #222222;
+    font-family: "Arial", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.form-subTitle {
+    color: #b3b2b2;
+    font-family: "Arial", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+    margin-bottom: 22px;
+}
+
+.adress_wrap-form-content form {
+    width: 50%;
+}
+
+label {
+    color: #222222;
+    font-family: "Arial", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.guest-register__infoBlock-bottom {
+    color: #b3b2b2;
+    font-family: "Arial", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+    margin-bottom: 38px;
+}
+
+.form-btn {
+    width: 180px;
+    height: 50px;
+    border: 1px solid #eaeaea;
+    background-color: #ffffff;
+    color: #4a4a4a;
+    font-family: "Arial", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.form-btn:hover {
+    border: 2px solid #c13a61;
+}
+
+.form-btn:active {
+    background-color: #f10a0a30;
+}
+
+.form-btn:focus {
+    outline: none;
+}
+
+.guest-register label {
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.guest-register input {
+    display: none;
+}
+
+.guest-register label span {
+    width: 14px;
+    height: 14px;
+    border: 2px solid #555555;
+    border-radius: 50%;
+    background-color: #ffffff;
+    display: inline-block;
+    position: relative;
+    top: 4px;
+    margin-right: 14px;
+    box-sizing: border-box;
+}
+
+.guest-register input:checked + span::before {
+    content: "";
+    display: block;
+    width: 6px;
+    height: 6px;
+    background-color: #000000;
+    border-radius: 50%;
+    position: relative;
+    top: 2px;
+    left: 2px;
+    box-sizing: border-box;
+}
+
+.registed label,
+.registed input {
+    display: block;
+}
+
+.registed label span {
+    color: #ff0d0d;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 20px;
+
+}
+
+.registed input {
+    width: 390px;
+    height: 45px;
+    border: 1px solid #eaeaea;
+    background-color: #ffffff;
+    margin: 5px 0 10px;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+}
+
+.registed__infoBlock-bottom {
+    color: #ff0d0d;
+    font-family: "Arial", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+    margin-bottom: 38px;
+}
+
+.registed__forgot {
+    color: #222222;
+    font-family: "Arial", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-decoration: none;
+    margin-left: 32px;
+}
