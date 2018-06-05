@@ -208,13 +208,14 @@ const validateForm = {
    * @param {Event} event событие от кнопки.
    */
   btnClickHandler(event) {
-    for (let elem of this.elemForm) {
+    let arr = $(this.elemForm).find('input, textarea');
+    for (let elem of arr) {
       if (elem.id === this.idBtnSubmit) continue;
       let validateResult = this.validateInput(elem);
       if (!validateResult) {
         this.outMessageFailValidate(elem);
         event.preventDefault();
-        break;
+        // break;
       } else {
         this.outMessageFailValidate(elem, true);
       }
@@ -254,28 +255,33 @@ const validateForm = {
    * @param {boolean} validate если true то действуем по алгоритму успех, false действуем по алгоритму ошибка.
    */
   outMessageFailValidate(elem, validate = false) {
-    let elemError = document.getElementById(`error-${elem.id}`);
+    let elemError = document.getElementById(`error-message`);
     if (!validate) {
       if (!elemError) {
         elemError = document.createElement('div');
-        elemError.id = `error-${elem.id}`;
+        elemError.id = `error-message`;
         elemError.classList.add(this.classElemOutErr);
         // elem.parentElement.insertBefore(elemError, elem.nextElementSibling);
 
-        elem.classList.remove(this.classValidateInput);
-        elem.classList.add(this.classNoValidateInput);
+        $(elemError).dialog({
+          modal: true,
+          title: 'Ошибка ввода',
+          position: {my: "left top", at: "right+10 top", of: elem},
+          draggable: false,
+          close: function () {
+            $(this).remove();
+          }
+        });
+
       }
-      elemError.innerText = this.errorMessage[elem.id];
+      elem.classList.remove(this.classValidateInput);
+      elem.classList.add(this.classNoValidateInput);
+      elemError.innerText += this.errorMessage[elem.id] + '\n';
       elem.value = '';
 
       // добавлено вывод диологового окна и эффект к валидируемому input
-      this.birthdayInput.effectErrorInput(elem);
-      $(elemError).dialog({
-        modal: true,
-        title: 'Ошибка ввода',
-        position: {my: "left top", at: "right+10 top", of: elem},
-        draggable: false,
-      });
+      // this.birthdayInput.effectErrorInput(elem);
+      $(elem).effect('bounce');
       //
 
     } else {
