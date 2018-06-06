@@ -276,18 +276,19 @@ const validateForm = {
       }
       elem.classList.remove(this.classValidateInput);
       elem.classList.add(this.classNoValidateInput);
-      elemError.innerText += this.errorMessage[elem.id] + '\n';
+      elemError.innerText += '- ' + this.errorMessage[elem.id] + '\n\n';
       elem.value = '';
 
       // добавлено вывод диологового окна и эффект к валидируемому input
-      // this.birthdayInput.effectErrorInput(elem);
-      $(elem).effect('bounce');
+      this.birthdayInput.effectErrorInput(elem);
       //
 
     } else {
-      if (elemError) {
-        elemError.parentElement.removeChild(elemError);
-      }
+      /*
+            if (elemError) {
+              elemError.parentElement.removeChild(elemError);
+            }
+      */
       elem.classList.remove(this.classNoValidateInput);
       elem.classList.add(this.classValidateInput);
       elem.value = elem.value.trim();
