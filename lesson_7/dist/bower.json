@@ -1,0 +1,21 @@
+{
+  "name": "lesson6",
+  "homepage": "https://github.com/Anatoliy700/AdvancedCourse_Javascript",
+  "authors": [
+    "Anatoliy <anatoliy.rus@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-ui": "^1.12.1"
+  }
+}
