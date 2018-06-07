@@ -58,4 +58,6 @@ $(document).ready(function () {
 
     basket.remove(idProduct);
   });
+
+  console.log('test!!!');
 });
