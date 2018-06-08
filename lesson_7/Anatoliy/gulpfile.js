@@ -1,3 +1,5 @@
+"use strict";
+
 let gulp = require('gulp'),
   autoPrefixer = require('gulp-autoprefixer'),
   babel = require('gulp-babel'),
@@ -8,57 +10,111 @@ let gulp = require('gulp'),
   uglify = require('gulp-uglify'),
   jsonMinify = require('gulp-json-minify'),
   delFIles = require('del'),
-  browserSync = require('browser-sync');
+  browserSync = require('browser-sync'),
+  htmlreplace = require('gulp-html-replace'),
+  sourcemaps = require('gulp-sourcemaps');
+
+const path = {
+  app: {
+    html: 'app/*.html',
+    sass: 'app/sass/**/*.sass',
+    js: 'app/js/**/*.js',
+    json: 'app/json/*.json'
+  },
+  dist: {
+    html: 'dist/',
+    sass: 'dist/css/',
+    js: 'dist/js/',
+    json: 'dist/json/'
+  },
+  watch: {
+    html: 'app/*.html',
+    sass: 'app/sass/*.sass',
+    js: 'app/js/*.js'
+  },
+  clean: './dist',
+  cleanOld: [
+    'dist/*.html',
+    'dist/css/*',
+    'dist/js/*',
+    'dist/json/*'
+  ]
+};
+
+const config = {
+  server: {
+    baseDir: "./dist"
+  },
+  tunnel: true,
+  host: 'localhost',
+  port: 9000,
+  logPrefix: "Frontend_Devil"
+};
 
 gulp.task('default', ['del', 'html', 'sass', 'scripts', 'json', 'watchFile', 'server']);
 
 gulp.task('prod', ['del', 'html', 'sass', 'scripts', 'json']);
 
 gulp.task('html', function () {
-  gulp.src('app/*.html')
-    .pipe(gulp.dest('./dist/'));
+  gulp.src(path.app.html)
+    .pipe(gulp.dest(path.dist.html));
 });
 
 gulp.task('del', function () {
-  delFIles(['dist/*.html', 'dist/css/*', 'dist/js/*', 'dist/json/*']);
+  delFIles(path.cleanOld);
 });
 
 gulp.task('sass', function () {
-  gulp.src('app/sass/**/*.sass')
+  gulp.src(path.app.sass)
+    .pipe(sourcemaps.init())
     .pipe(sass())
     .pipe(concat('style.css', {newLine: '\n\n'}))
     .pipe(autoPrefixer())
-    .pipe(gulp.dest('dist/css'))
+    .pipe(gulp.dest(path.dist.sass))
     .pipe(rename({suffix: '.min'}))
     .pipe(csso())
-    .pipe(gulp.dest('dist/css'));
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(path.dist.sass));
 });
 
 gulp.task('scripts', function () {
-  gulp.src('app/js/**/*.js')
+  gulp.src(path.app.js)
     .pipe(concat('main-out.js', {newLine: ' \n\n '}))
-    .pipe(gulp.dest('dist/js/'))
+    .pipe(gulp.dest(path.dist.js))
     .pipe(babel({presets: ['env']}))
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest('dist/js/'));
+    .pipe(gulp.dest(path.dist.js));
 });
 
 gulp.task('json', function () {
-  gulp.src('app/json/*.json')
+  gulp.src(path.app.json)
     .pipe(jsonMinify())
-    .pipe(gulp.dest('dist/json/'));
+    .pipe(gulp.dest(path.dist.json));
 });
 
 gulp.task('server', function () {
-  browserSync.init({
-    server: 'dist/'
-  });
+  browserSync.init(config);
 });
 
 gulp.task('watchFile', function () {
-  gulp.watch('app/*.html', ['html']);
-  gulp.watch('app/js/*', ['scripts']);
-  gulp.watch('app/sass/*', ['sass']);
-  gulp.watch(['app/sass/*', 'app/js/*', 'app/*.html']).on('change', browserSync.reload)
+  gulp.watch(path.watch.html, ['html']);
+  gulp.watch(path.watch.js, ['scripts']);
+  gulp.watch(path.watch.sass, ['sass']);
+  gulp.watch([path.watch.html, path.watch.js, path.watch.sass]).on('change', () => browserSync.reload({stream: true}))
+});
+
+
+gulp.task('path', function () {
+  gulp.src('app/index-test.html')
+    .pipe(htmlreplace({
+      'js': [
+        'js/main-out.js'
+      ],
+      'css': [
+        'css/style.css'
+      ]
+    })).on('error', (err, ww) => console.log(err, ww))
+    .pipe(rename('assets.html'))
+    .pipe(gulp.dest('./dist'));
 });
