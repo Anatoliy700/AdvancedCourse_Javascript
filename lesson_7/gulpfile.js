@@ -24,8 +24,9 @@ gulp.task('del', function () {
 });
 
 gulp.task('sass', function () {
-  gulp.src('app/sass/*.sass')
+  gulp.src('app/sass/**/*.sass')
     .pipe(sass())
+    .pipe(concat('style.css', {newLine: '\n\n'}))
     .pipe(autoPrefixer())
     .pipe(gulp.dest('dist/css'))
     .pipe(rename({suffix: '.min'}))
@@ -34,7 +35,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('scripts', function () {
-  gulp.src('app/js/*.js')
+  gulp.src('app/js/**/*.js')
     .pipe(concat('main-out.js', {newLine: ' \n\n '}))
     .pipe(gulp.dest('dist/js/'))
     .pipe(babel({presets: ['env']}))
