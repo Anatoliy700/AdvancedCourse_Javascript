@@ -23,7 +23,7 @@ const path = {
   },
   dist: {
     html: 'dist/',
-    sass: 'dist/css/',
+    css: 'dist/css/',
     js: 'dist/js/',
     json: 'dist/json/'
   },
@@ -70,20 +70,20 @@ gulp.task('sass', function () {
     .pipe(sass())
     .pipe(concat('style.css', {newLine: '\n\n'}))
     .pipe(autoPrefixer())
-    .pipe(gulp.dest(path.dist.sass))
     .pipe(rename({suffix: '.min'}))
     .pipe(csso())
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest(path.dist.sass));
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest(path.dist.css));
 });
 
 gulp.task('scripts', function () {
   gulp.src(path.app.js)
+    .pipe(sourcemaps.init())
     .pipe(concat('main-out.js', {newLine: ' \n\n '}))
-    .pipe(gulp.dest(path.dist.js))
     .pipe(babel({presets: ['env']}))
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(path.dist.js));
 });
 
